@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["file:///home/tamoghna/rezlabs/webV2/src/components/ui/Particles.css"],"sourcesContent":[".particles-container {\n  position: relative;\n  width: 100%;\n  height: 100%;\n}\n"],"names":[],"mappings":"AAAA"}}]
-}
