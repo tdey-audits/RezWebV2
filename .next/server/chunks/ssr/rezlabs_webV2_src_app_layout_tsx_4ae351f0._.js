@@ -1,0 +1,3 @@
+module.exports=[19981,a=>{"use strict";var b=a.i(68084);function c({children:a}){return(0,b.jsxs)("html",{lang:"en",children:[(0,b.jsxs)("head",{children:[(0,b.jsx)("link",{rel:"preconnect",href:"https://fonts.googleapis.com"}),(0,b.jsx)("link",{rel:"preconnect",href:"https://fonts.gstatic.com",crossOrigin:"anonymous"}),(0,b.jsx)("link",{href:"https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@100..900&display=swap",rel:"stylesheet"})]}),(0,b.jsx)("body",{children:a})]})}a.s(["default",()=>c,"metadata",0,{title:"RezLabs",description:"RezLabs Website"}])}];
+
+//# sourceMappingURL=rezlabs_webV2_src_app_layout_tsx_4ae351f0._.js.map

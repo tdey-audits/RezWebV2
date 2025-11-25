@@ -1,0 +1,3 @@
+:HL["/_next/static/chunks/5245722209571c0d.css","style"]
+:HL["https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@100..900&display=swap","style"]
+0:{"buildId":"MyyLYeIfGrzwdjtR01fTT","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"manifesto","paramType":null,"paramKey":"manifesto","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
