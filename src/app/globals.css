@@ -701,100 +701,42 @@ a:hover {
     color: var(--color-black);
 }
 
-/* Mobile Menu Button */
-.mobile-menu-btn {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    z-index: 1001;
-    justify-self: end;
-}
-
-.hamburger {
-    display: block;
-    width: 24px;
-    height: 1px;
-    background-color: var(--color-black);
-    position: relative;
-    transition: all var(--transition-base);
-}
-
-.hamburger::before,
-.hamburger::after {
-    content: '';
-    position: absolute;
-    width: 24px;
-    height: 1px;
-    background-color: var(--color-black);
-    transition: all var(--transition-base);
-}
-
-.navbar.scrolled .hamburger,
-.navbar.scrolled .hamburger::before,
-.navbar.scrolled .hamburger::after {
-    background-color: var(--color-black);
-}
-
-.hamburger::before {
-    top: -6px;
-}
-
-.hamburger::after {
-    bottom: -6px;
-}
-
-.hamburger.open {
-    background-color: transparent !important;
-}
-
-.hamburger.open::before {
-    transform: rotate(45deg);
-    top: 0;
-}
-
-.hamburger.open::after {
-    transform: rotate(-45deg);
-    bottom: 0;
-}
-
-.mobile-nav {
-    display: none;
-    flex-direction: column;
-    gap: var(--spacing-md);
-    padding: var(--spacing-lg);
-    background-color: var(--color-black);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height var(--transition-base);
-}
-
-.mobile-nav.open {
-    max-height: 300px;
-}
-
-.mobile-nav .nav-link {
-    width: 100%;
-    text-align: left;
-    padding: var(--spacing-sm) 0;
-}
-
-/* Responsive */
+/* Mobile responsive navbar */
 @media (max-width: 768px) {
-    .desktop-nav {
-        display: none;
+    .navbar {
+        padding: 0.5rem 1rem;
     }
 
-    .mobile-menu-btn {
-        display: block;
+    .navbar-content {
+        grid-template-columns: auto 1fr auto;
+        gap: 0.5rem;
     }
 
-    .mobile-nav {
-        display: flex;
+    .brand-logo {
+        height: 24px;
+    }
+
+    .brand-name {
+        font-size: 1.2rem;
+    }
+
+    .navbar-links {
+        gap: 0.5rem;
+        justify-content: center;
+    }
+
+    .nav-link {
+        font-size: 0.7rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    .launch-app-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.7rem;
     }
 }
+
+
 
 .ticker-wrap {
     width: 100%;
@@ -1051,28 +993,38 @@ a:hover {
         }
     }
 
-    --animate-shiny-text: shiny-text 8s infinite
-;
-  @keyframes shiny-text {
-  0%, 90%, 100% {
-    background-position: calc(-100% - var(--shiny-width)) 0;
+    --animate-shiny-text: shiny-text 8s infinite;
+
+    @keyframes shiny-text {
+
+        0%,
+        90%,
+        100% {
+            background-position: calc(-100% - var(--shiny-width)) 0;
         }
-  30%, 60% {
-    background-position: calc(100% + var(--shiny-width)) 0;
+
+        30%,
+        60% {
+            background-position: calc(100% + var(--shiny-width)) 0;
         }
     }
-  --animate-shine: shine var(--duration) infinite linear;
-  @keyframes shine {
-  0% {
-    background-position: 0% 0%;
+
+    --animate-shine: shine var(--duration) infinite linear;
+
+    @keyframes shine {
+        0% {
+            background-position: 0% 0%;
         }
-  50% {
-    background-position: 100% 100%;
+
+        50% {
+            background-position: 100% 100%;
         }
-  to {
-    background-position: 0% 0%;
+
+        to {
+            background-position: 0% 0%;
         }
-    }}
+    }
+}
 
 .dark {
     --background: oklch(0.141 0.005 285.823);
@@ -1115,5 +1067,106 @@ a:hover {
 
     body {
         @apply bg-background text-foreground;
+    }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    section {
+        padding: var(--spacing-xl) 0;
+    }
+
+    .hero-title {
+        font-size: clamp(3rem, 12vw, 5rem);
+        margin-bottom: var(--spacing-md);
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+        padding: 0 1rem;
+        margin-bottom: var(--spacing-xl);
+    }
+
+    .manifesto {
+        padding: 3rem 1rem;
+    }
+
+    .manifesto h2 {
+        font-size: clamp(2.5rem, 10vw, 4rem);
+    }
+
+    .manifesto .manifesto-content {
+        max-width: 100%;
+        padding: 0 1rem;
+    }
+
+    .manifesto .manifesto-content p {
+        font-size: 1.1rem;
+    }
+
+    .why-rez {
+        padding: 4rem 1rem;
+    }
+
+    .why-rez h2 {
+        font-size: 3rem;
+        margin-bottom: var(--spacing-lg);
+        text-align: center;
+    }
+
+    .why-rez-grid {
+        gap: var(--spacing-md);
+    }
+
+    .feature-box {
+        padding: 1.5rem;
+    }
+
+    .feature-box h3 {
+        font-size: 2rem;
+    }
+
+    .feature-box p {
+        font-size: 1rem;
+    }
+
+    .footer {
+        padding: var(--spacing-lg) 0;
+    }
+
+    .footer-top {
+        gap: var(--spacing-lg);
+    }
+
+    .footer-nav-group {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: var(--spacing-2xl);
+    }
+
+    /* Manifesto Page Mobile Styles */
+    .manifesto-page {
+        padding-top: 5rem !important;
+        padding-bottom: 3rem !important;
+    }
+
+    .manifesto-page h1 {
+        font-size: 2.5rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+
+    .manifesto-page .w-full.max-w-6xl {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    .manifesto-page .bg-black\/\[0\.65\] {
+        padding: 1.2rem !important;
+    }
+
+    .manifesto-page p {
+        font-size: 0.7rem !important;
+        line-height: 1.55 !important;
+        margin-bottom: 0.85rem !important;
     }
 }

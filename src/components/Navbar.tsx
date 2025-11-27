@@ -11,7 +11,6 @@ gsap.registerPlugin(ScrollToPlugin);
 
 const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const pathname = usePathname();
 
     useEffect(() => {
@@ -38,7 +37,6 @@ const Navbar = () => {
             return;
         }
         gsap.to(window, { duration: 1, scrollTo: id, ease: 'power2.out' });
-        setMobileMenuOpen(false);
     };
 
     return (
@@ -51,7 +49,7 @@ const Navbar = () => {
                     </div>
                 </div>
 
-                <div className="navbar-center desktop-nav">
+                <div className="navbar-center">
                     <div className="navbar-links">
                         <button onClick={() => scrollToSection('#why-rez')} className="nav-link">Why Rez</button>
                         <Link href="/manifesto" className="nav-link"><AnimatedShinyText>Manifesto</AnimatedShinyText></Link>
@@ -59,35 +57,9 @@ const Navbar = () => {
                     </div>
                 </div>
 
-                <div className="navbar-right desktop-nav">
+                <div className="navbar-right">
                     <a href="https://b34bvolr4xazf2byeqkv3u.streamlit.app/" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-light launch-app-btn">Try Beta</a>
                 </div>
-
-                <button
-                    className={`mobile-menu-btn ${mobileMenuOpen ? 'open' : ''}`}
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                    aria-label="Toggle menu"
-                >
-                    <span className={`hamburger ${mobileMenuOpen ? 'open' : ''}`}></span>
-                </button>
-            </div>
-
-            {/* Mobile Navigation */}
-            <div className={`mobile-nav ${mobileMenuOpen ? 'open' : ''}`}>
-                <button onClick={() => scrollToSection('#why-rez')} className="nav-link">
-                    Why Rez
-                </button>
-                <Link href="/manifesto" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
-                    <AnimatedShinyText>Manifesto</AnimatedShinyText>
-                </Link>
-                <a
-                    href="https://github.com/0xtdey/rezlitepaper/blob/main/Rez_Litepaper.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="nav-link"
-                >
-                    Litepaper
-                </a>
             </div>
         </nav>
     );
