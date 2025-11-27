@@ -59,7 +59,7 @@ export default function ManifestoPage() {
                     <div className="w-full relative rounded-3xl overflow-hidden ">
                         <div className="w-full bg-black/[0.65] backdrop-blur-xl rounded-3xl shadow-2xl relative z-10 !p-8">
                             <p className="mb-4 !text-[1.1rem] !font-medium text-white leading-relaxed text-justify">
-                                Massive chunks of data are being emitted by blockchains every second. And AI needs extensive datasets to be trained. This opens up an obvious opportunity to use blockchain as the data layer for DeFi. The amalgamation of DeFi and AI is termed as DeFAI Intelligent DeFi. That is what we are building at rezLabs.
+                                Massive chunks of data are being emitted by blockchains every second. And AI needs extensive datasets to be trained. This opens up an obvious opportunity to use blockchain as the data layer for DeFi. The amalgamation of DeFi and AI is termed as DeFAI Intelligent DeFi. That is what we are building at Rez Labs.
                             </p>
                             <p className="mb-4 !text-[1.1rem] !font-medium text-white leading-relaxed text-justify">
                                 With the increasing popularity and utility of Perpetuals and Prediction markets in DeFi, there's an obvious trend that it's only going to increase and get even more popular. But for a retail investor, the barrier to entry is high. It isn't just difficult to study complex market parameters; the entire experience is plagued by fragmented UX, requiring users to navigate disjointed interfaces and clunky processes.
