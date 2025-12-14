@@ -38,7 +38,7 @@ const Hero = () => {
                         Rez is a non-custodial platform that automates perpetual trading using AI agents.
                     </p>
                     <div className="hero-buttons">
-                        <a href="https://b34bvolr4xazf2byeqkv3u.streamlit.app/" target="_blank" rel="noopener noreferrer" className="btn btn-primary">Try Beta</a>
+                        <a href="/try-beta" className="btn btn-primary">Try Beta</a>
                         <a href="https://github.com/0xtdey/rezlitepaper/blob/main/Rez_Litepaper.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-secondary">Read Litepaper</a>
                     </div>
                 </div>

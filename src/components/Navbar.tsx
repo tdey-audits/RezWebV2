@@ -58,7 +58,7 @@ const Navbar = () => {
                 </div>
 
                 <div className="navbar-right">
-                    <a href="https://b34bvolr4xazf2byeqkv3u.streamlit.app/" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-light launch-app-btn">Try Beta</a>
+                    <a href="/try-beta" className="btn btn-sm btn-light launch-app-btn">Try Beta</a>
                 </div>
             </div>
         </nav>
