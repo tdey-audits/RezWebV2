@@ -39,7 +39,7 @@ const Hero = () => {
                     </p>
                     <div className="hero-buttons">
                         <a href="/try-beta" className="btn btn-primary">Try Beta</a>
-                        <a href="https://github.com/0xtdey/rezlitepaper/blob/main/Rez_Litepaper.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-secondary">Read Litepaper</a>
+                        <a href="https://www.papermark.com/view/cmj2tgzzd0004lb043vi5a6zb" target="_blank" rel="noopener noreferrer" className="btn btn-secondary">Read Litepaper</a>
                     </div>
                 </div>
             </div>
