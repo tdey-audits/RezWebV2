@@ -53,7 +53,7 @@ const Navbar = () => {
                     <div className="navbar-links">
                         <button onClick={() => scrollToSection('#why-rez')} className="nav-link">Why Rez</button>
                         <Link href="/manifesto" className="nav-link"><AnimatedShinyText>Manifesto</AnimatedShinyText></Link>
-                        <a href="https://github.com/0xtdey/rezlitepaper/blob/main/Rez_Litepaper.pdf" target="_blank" rel="noopener noreferrer" className="nav-link">Litepaper</a>
+                        <a href="https://www.papermark.com/view/cmj2tgzzd0004lb043vi5a6zb" target="_blank" rel="noopener noreferrer" className="nav-link">Litepaper</a>
                     </div>
                 </div>
 
