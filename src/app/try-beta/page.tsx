@@ -44,7 +44,7 @@ export default function TryBetaPage() {
                 // Redirect to Streamlit
                 window.location.href = STREAMLIT_URL;
             } else {
-                const data = await response.json();
+                const data: { error?: string } = await response.json();
                 setError(data.error || 'Something went wrong. Please try again.');
             }
         } catch {

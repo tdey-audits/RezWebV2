@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useState, useTransition, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { joinWaitlist } from '../actions/joinWaitlist';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Loader2, AlertCircle, X } from 'lucide-react';
 import confetti from 'canvas-confetti';
@@ -10,7 +9,7 @@ import Image from 'next/image';
 
 export default function WaitlistForm() {
     const [email, setEmail] = useState('');
-    const [isPending, startTransition] = useTransition();
+    const [isPending, setIsPending] = useState(false);
     const [state, setState] = useState<{ success: boolean; message: string } | null>(null);
     const [showSuccess, setShowSuccess] = useState(false);
     const router = useRouter();
@@ -51,12 +50,21 @@ export default function WaitlistForm() {
         }, 500);
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        startTransition(async () => {
-            const formData = new FormData();
-            formData.append('email', email);
-            const result = await joinWaitlist(formData);
+        setIsPending(true);
+        setState(null);
+
+        try {
+            const response = await fetch('/api/waitlist', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email }),
+            });
+
+            const result: { success: boolean; message: string } = await response.json();
 
             if (result.success) {
                 setShowSuccess(true);
@@ -72,7 +80,11 @@ export default function WaitlistForm() {
             } else {
                 setState(result);
             }
-        });
+        } catch (error) {
+            setState({ success: false, message: 'An error occurred. Please try again.' });
+        } finally {
+            setIsPending(false);
+        }
     };
 
     return (
