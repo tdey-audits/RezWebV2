@@ -1,12 +1,10 @@
 /// <reference types="@cloudflare/workers-types" />
 
-// Cloudflare Pages Function for waitlist signup
-// This runs on Cloudflare Workers alongside the static site
-
-interface Env {
+export interface Env {
   NEXT_PUBLIC_SUPABASE_URL: string;
   SUPABASE_SERVICE_ROLE_KEY: string;
   RESEND_API_KEY: string;
+  ASSETS: { fetch: typeof fetch };
 }
 
 interface WaitlistRequest {
@@ -14,7 +12,33 @@ interface WaitlistRequest {
   hp?: string;
 }
 
-export const onRequestPost: PagesFunction<Env> = async (context) => {
+export default {
+  async fetch(request: Request, env: Env): Promise<Response> {
+    const url = new URL(request.url);
+    
+    // Handle API routes
+    if (url.pathname === '/api/waitlist' && request.method === 'POST') {
+      return handleWaitlist(request, env);
+    }
+    
+    // Handle CORS preflight for API
+    if (url.pathname === '/api/waitlist' && request.method === 'OPTIONS') {
+      return new Response(null, {
+        status: 204,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'POST, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type',
+        },
+      });
+    }
+    
+    // Serve static assets for everything else
+    return env.ASSETS.fetch(request);
+  },
+};
+
+async function handleWaitlist(request: Request, env: Env): Promise<Response> {
   const corsHeaders = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
@@ -23,7 +47,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   };
 
   try {
-    const body: WaitlistRequest = await context.request.json();
+    const body: WaitlistRequest = await request.json();
     const { email, hp } = body;
 
     // 1. Bot Protection (Honeypot)
@@ -42,9 +66,9 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
       );
     }
 
-    const supabaseUrl = context.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseKey = context.env.SUPABASE_SERVICE_ROLE_KEY;
-    const resendApiKey = context.env.RESEND_API_KEY;
+    const supabaseUrl = env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseKey = env.SUPABASE_SERVICE_ROLE_KEY;
+    const resendApiKey = env.RESEND_API_KEY;
 
     if (!supabaseUrl || !supabaseKey) {
       console.error('Missing Supabase configuration');
@@ -162,16 +186,4 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
       { status: 500, headers: corsHeaders }
     );
   }
-};
-
-// Handle CORS preflight
-export const onRequestOptions: PagesFunction = async () => {
-  return new Response(null, {
-    status: 204,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type',
-    },
-  });
-};
+}

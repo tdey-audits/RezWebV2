@@ -1,7 +1,9 @@
 {
     "name": "rezwebv2",
+    "main": "worker.ts",
     "compatibility_date": "2025-11-25",
     "assets": {
-        "directory": "./dist"
+        "directory": "./dist",
+        "binding": "ASSETS"
     }
 }
