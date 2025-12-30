@@ -53,12 +53,13 @@ const Navbar = () => {
                     <div className="navbar-links">
                         <button onClick={() => scrollToSection('#why-rez')} className="nav-link">Why Rez</button>
                         <Link href="/manifesto" className="nav-link"><AnimatedShinyText>Manifesto</AnimatedShinyText></Link>
-                        <a href="https://www.papermark.com/view/cmj2tgzzd0004lb043vi5a6zb" target="_blank" rel="noopener noreferrer" className="nav-link">Litepaper</a>
+                        <Link href="/roadmap" className="nav-link">Roadmap</Link>
+                        {/* <a href="https://www.papermark.com/view/cmj2tgzzd0004lb043vi5a6zb" target="_blank" rel="noopener noreferrer" className="nav-link">Litepaper</a> */}
                     </div>
                 </div>
 
                 <div className="navbar-right">
-                    <a href="https://b34bvolr4xazf2byeqkv3u.streamlit.app/" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-light launch-app-btn">Try Beta</a>
+                    <a href="https://www.papermark.com/view/cmj2tgzzd0004lb043vi5a6zb" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-light launch-app-btn">Read Litepaper</a>
                 </div>
             </div>
         </nav>

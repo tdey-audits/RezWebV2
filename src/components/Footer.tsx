@@ -20,7 +20,7 @@ const Footer = () => {
                     <div className="footer-nav-group">
                         <div className="footer-column">
                             <h4>Socials</h4>
-                            <a href="#" className="footer-link">Twitter</a>
+                            <a href="https://x.com/LabsRez" className="footer-link" target="_blank" rel="noopener noreferrer">Twitter</a>
                             <a href="#" className="footer-link">GitHub</a>
                         </div>
                         <div className="footer-column">
