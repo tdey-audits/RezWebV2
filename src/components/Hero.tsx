@@ -4,6 +4,8 @@ import React from 'react';
 import ColorBends from './ui/ColorBends';
 import { AuroraText } from './ui/aurora-text';
 
+import WaitlistForm from './WaitlistForm';
+
 const Hero = () => {
     return (
         <section className="hero relative overflow-hidden" id="hero">
@@ -37,9 +39,8 @@ const Hero = () => {
                     <p className="hero-subtitle">
                         Rez is a non-custodial platform that automates perpetual trading using AI agents.
                     </p>
-                    <div className="hero-buttons">
-                        <a href="/try-beta" className="btn btn-primary">Try Beta</a>
-                        <a href="https://www.papermark.com/view/cmj2tgzzd0004lb043vi5a6zb" target="_blank" rel="noopener noreferrer" className="btn btn-secondary">Read Litepaper</a>
+                    <div className="hero-buttons flex justify-center w-full">
+                        <WaitlistForm />
                     </div>
                 </div>
             </div>
