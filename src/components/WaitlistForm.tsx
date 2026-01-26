@@ -115,6 +115,12 @@ export default function WaitlistForm() {
                         "JOIN WAITLIST"
                     )}
                 </button>
+                <a
+                    href="https://www.google.co.in"
+                    className="cursor-pointer whitespace-nowrap text-[0.85rem] text-gray-500 hover:text-gray-800 underline transition-colors flex items-center justify-center px-6"
+                >
+                    Have an invite code?
+                </a>
             </form>
 
             {/* Inline Error Message */}
