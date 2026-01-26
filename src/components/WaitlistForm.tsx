@@ -90,12 +90,12 @@ export default function WaitlistForm() {
     return (
         <div className="flex flex-col items-center w-full mt-0 gap-6">
             <form
-                className="flex flex-row items-center gap-3 w-full max-w-[520px]"
+                className="flex flex-row items-center justify-center gap-3 w-full max-w-[800px]"
                 onSubmit={handleSubmit}
             >
                 <label className="sr-only" htmlFor="email">Email address</label>
                 <input
-                    className="flex-1 min-w-0 bg-white border border-gray-200 !pl-[1.75rem] !pr-4 h-[42px] text-[0.95rem] text-gray-900 placeholder-gray-400 focus:outline-none focus:border-black transition-all rounded-none appearance-none"
+                    className="flex-1 min-w-[280px] bg-white border border-gray-200 !pl-[1.75rem] !pr-4 h-[42px] text-[0.95rem] text-gray-900 placeholder-gray-400 focus:outline-none focus:border-black transition-all rounded-none appearance-none"
                     id="email"
                     name="email"
                     placeholder="Enter your email"
@@ -117,7 +117,7 @@ export default function WaitlistForm() {
                 </button>
                 <a
                     href="https://www.google.co.in"
-                    className="cursor-pointer whitespace-nowrap text-[0.85rem] text-gray-500 hover:text-gray-800 underline transition-colors flex items-center justify-center px-6"
+                    className="btn launch-app-btn !rounded-none cursor-pointer whitespace-nowrap !h-[42px] !py-0 !px-[1.75rem] text-[0.95rem]"
                 >
                     Have an invite code?
                 </a>
