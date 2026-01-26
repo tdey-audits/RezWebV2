@@ -116,7 +116,7 @@ export default function WaitlistForm() {
                     )}
                 </button>
                 <a
-                    href="https://www.google.co.in"
+                    href="https://app.rezlabs.org/"
                     className="btn launch-app-btn !rounded-none cursor-pointer whitespace-nowrap !h-[42px] !py-0 !px-[1.75rem] text-[0.95rem]"
                 >
                     Have an invite code?
