@@ -90,12 +90,12 @@ export default function WaitlistForm() {
     return (
         <div className="flex flex-col items-center w-full mt-0 gap-6">
             <form
-                className="flex flex-row items-center justify-center gap-3 w-full max-w-[800px]"
+                className="flex flex-wrap items-center justify-center gap-3 w-full max-w-[800px]"
                 onSubmit={handleSubmit}
             >
                 <label className="sr-only" htmlFor="email">Email address</label>
                 <input
-                    className="flex-1 min-w-[280px] bg-white border border-gray-200 !pl-[1.75rem] !pr-4 h-[42px] text-[0.95rem] text-gray-900 placeholder-gray-400 focus:outline-none focus:border-black transition-all rounded-none appearance-none"
+                    className="flex-1 basis-[280px] min-w-0 bg-white border border-gray-200 !pl-[1.75rem] !pr-4 h-[42px] text-[1rem] text-gray-900 placeholder-gray-400 focus:outline-none focus:border-black transition-all rounded-none appearance-none"
                     id="email"
                     name="email"
                     placeholder="Enter your email"
@@ -104,23 +104,25 @@ export default function WaitlistForm() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
-                <button
-                    className="btn launch-app-btn !rounded-none cursor-pointer whitespace-nowrap !h-[42px] !py-0 !px-[1.75rem] text-[0.95rem]"
-                    type="submit"
-                    disabled={isPending}
-                >
-                    {isPending ? (
-                        <Loader2 className="w-4 h-4 animate-spin mx-auto" />
-                    ) : (
-                        "JOIN WAITLIST"
-                    )}
-                </button>
-                <a
-                    href="https://app.rezlabs.org/"
-                    className="btn launch-app-btn !rounded-none cursor-pointer whitespace-nowrap !h-[42px] !py-0 !px-[1.75rem] text-[0.95rem]"
-                >
-                    Have an invite code?
-                </a>
+                <div className="flex flex-row gap-3 max-[480px]:w-full max-[360px]:gap-2 max-[290px]:flex-col max-[290px]:gap-3">
+                    <button
+                        className="btn launch-app-btn !rounded-none cursor-pointer whitespace-nowrap !min-h-[42px] !h-[42px] !py-0 !px-[1.75rem] text-[0.95rem] max-[480px]:flex-1 max-[360px]:!px-2 max-[360px]:text-[0.8rem] max-[290px]:w-full max-[290px]:!px-[1.75rem]"
+                        type="submit"
+                        disabled={isPending}
+                    >
+                        {isPending ? (
+                            <Loader2 className="w-4 h-4 animate-spin mx-auto" />
+                        ) : (
+                            "JOIN WAITLIST"
+                        )}
+                    </button>
+                    <a
+                        href="https://app.rezlabs.org/"
+                        className="btn launch-app-btn !rounded-none cursor-pointer whitespace-nowrap !min-h-[42px] !h-[42px] !py-0 !px-[1.75rem] text-[0.95rem] text-center max-[480px]:flex-1 max-[360px]:!px-2 max-[360px]:text-[0.8rem] max-[290px]:w-full max-[290px]:!px-[1.75rem]"
+                    >
+                        Have an invite code?
+                    </a>
+                </div>
             </form>
 
             {/* Inline Error Message */}

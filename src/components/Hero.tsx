@@ -27,7 +27,7 @@ const Hero = () => {
                 <div className="hero-text">
                     <h1 className="hero-title">
                         The Future of Perps<br />
-                        <span className="italic">
+                        <span className="italic max-[280px]:text-[2.8rem] max-[260px]:text-[2rem]">
                             <AuroraText
                                 colors={['#4B5563', '#6B7280', '#9CA3AF', '#71717A', '#52525B']}
                                 speed={1.2}
