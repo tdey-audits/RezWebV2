@@ -1,8 +1,7 @@
 /// <reference types="@cloudflare/workers-types" />
 
 export interface Env {
-  NEXT_PUBLIC_SUPABASE_URL: string;
-  SUPABASE_SERVICE_ROLE_KEY: string;
+  CONVEX_URL: string;
   RESEND_API_KEY: string;
   ASSETS: { fetch: typeof fetch };
 }
@@ -15,12 +14,12 @@ interface WaitlistRequest {
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
-    
+
     // Handle API routes
     if (url.pathname === '/api/waitlist' && request.method === 'POST') {
       return handleWaitlist(request, env);
     }
-    
+
     // Handle CORS preflight for API
     if (url.pathname === '/api/waitlist' && request.method === 'OPTIONS') {
       return new Response(null, {
@@ -32,7 +31,7 @@ export default {
         },
       });
     }
-    
+
     // Serve static assets for everything else
     return env.ASSETS.fetch(request);
   },
@@ -66,68 +65,52 @@ async function handleWaitlist(request: Request, env: Env): Promise<Response> {
       );
     }
 
-    const supabaseUrl = env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseKey = env.SUPABASE_SERVICE_ROLE_KEY;
+    const convexUrl = env.CONVEX_URL;
     const resendApiKey = env.RESEND_API_KEY;
 
-    if (!supabaseUrl || !supabaseKey) {
-      console.error('Missing Supabase configuration');
+    if (!convexUrl) {
+      console.error('Missing Convex configuration');
       return new Response(
         JSON.stringify({ success: false, message: 'Server configuration error.' }),
         { status: 500, headers: corsHeaders }
       );
     }
 
-    // 3. Check for duplicates using Supabase REST API
-    const checkResponse = await fetch(
-      `${supabaseUrl}/rest/v1/waitlist?email=eq.${encodeURIComponent(email)}&select=id`,
-      {
-        headers: {
-          'apikey': supabaseKey,
-          'Authorization': `Bearer ${supabaseKey}`,
-        },
-      }
-    );
-
-    const existing = await checkResponse.json();
-    if (Array.isArray(existing) && existing.length > 0) {
-      return new Response(
-        JSON.stringify({ success: false, message: 'You are already on the list!' }),
-        { status: 409, headers: corsHeaders }
-      );
-    }
-
-    // 4. Insert into Supabase
-    const insertResponse = await fetch(
-      `${supabaseUrl}/rest/v1/waitlist`,
+    // 3. Add email to waitlist using Convex mutation (handles duplicate check internally)
+    const mutationResponse = await fetch(
+      `${convexUrl}/api/mutation`,
       {
         method: 'POST',
         headers: {
-          'apikey': supabaseKey,
-          'Authorization': `Bearer ${supabaseKey}`,
           'Content-Type': 'application/json',
-          'Prefer': 'return=minimal',
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({
+          path: 'waitlist:addEmail',
+          args: { email },
+        }),
       }
     );
 
-    if (!insertResponse.ok) {
-      const errorText = await insertResponse.text();
-      if (errorText.includes('23505')) {
-        return new Response(
-          JSON.stringify({ success: false, message: 'You are already on the list!' }),
-          { status: 409, headers: corsHeaders }
-        );
-      }
-      console.error('Database error:', errorText);
+    if (!mutationResponse.ok) {
+      const errorText = await mutationResponse.text();
+      console.error('Convex error:', errorText);
       return new Response(
         JSON.stringify({ success: false, message: 'Something went wrong. Please try again.' }),
         { status: 500, headers: corsHeaders }
       );
     }
 
-    // 5. Send welcome email via Resend
+    const result = await mutationResponse.json() as { value?: { success: boolean; duplicate: boolean } };
+
+    // Check if the mutation returned a duplicate flag
+    if (result.value?.duplicate) {
+      return new Response(
+        JSON.stringify({ success: false, message: 'You are already on the list!' }),
+        { status: 409, headers: corsHeaders }
+      );
+    }
+
+    // 4. Send welcome email via Resend
     if (resendApiKey) {
       try {
         await fetch('https://api.resend.com/emails', {
@@ -143,15 +126,15 @@ async function handleWaitlist(request: Request, env: Env): Promise<Response> {
             html: `
               <div style="font-family: sans-serif; max-width: 520px; margin: 0 auto; padding: 40px 24px; color: #1a1a1a;">
                 <h1 style="font-size: 24px; font-weight: 600; margin: 0 0 24px 0;">You're on the list.</h1>
-                
+
                 <p style="font-size: 16px; line-height: 1.6; margin: 0 0 24px 0;">
                   Thanks for joining waitlist. We're building the next generation of autonomous trading systems designed to capture opportunities around the clock, so you don't have to.
                 </p>
-                
+
                 <p style="font-size: 16px; line-height: 1.6; margin: 0 0 24px 0;">
                   We'll reach out as soon as early access opens up.
                 </p>
-                
+
                 <p style="font-size: 16px; line-height: 1.6; margin: 0 0 8px 0;">
                   In the meantime, stay updated:
                 </p>
@@ -161,7 +144,7 @@ async function handleWaitlist(request: Request, env: Env): Promise<Response> {
                 <p style="font-size: 16px; line-height: 1.6; margin: 0 0 32px 0;">
                   Follow us on X: <a href="https://x.com/LabsRez" style="color: #0066cc; text-decoration: none;">@LabsRez</a>
                 </p>
-                
+
                 <p style="font-size: 16px; line-height: 1.6; margin: 0 0 4px 0;">See you soon,</p>
                 <p style="font-size: 16px; font-weight: 500; margin: 0;">Team Rez</p>
               </div>
