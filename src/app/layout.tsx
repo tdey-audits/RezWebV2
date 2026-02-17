@@ -4,6 +4,9 @@ import "./globals.css";
 export const metadata: Metadata = {
     title: "RezLabs",
     description: "RezLabs Website",
+    icons: {
+        icon: "/assets/rez.png",
+    },
 };
 
 export default function RootLayout({

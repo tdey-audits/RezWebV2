@@ -95,7 +95,7 @@ export default function WaitlistForm() {
             >
                 <label className="sr-only" htmlFor="email">Email address</label>
                 <input
-                    className="flex-1 basis-[280px] min-w-0 bg-white border border-gray-200 !pl-[1.75rem] !pr-4 h-[42px] text-[1rem] text-gray-900 placeholder-gray-400 focus:outline-none focus:border-black transition-all rounded-none appearance-none"
+                    className="flex-1 basis-[280px] min-w-0 bg-white border border-gray-200 !pl-[1.75rem] !pr-4 h-[42px] text-[1rem] text-gray-900 placeholder-gray-400 focus:outline-none focus:border-black transition-all rounded-xl appearance-none"
                     id="email"
                     name="email"
                     placeholder="Enter your email"
@@ -106,7 +106,7 @@ export default function WaitlistForm() {
                 />
                 <div className="flex flex-row gap-3 max-[480px]:w-full max-[360px]:gap-2 max-[290px]:flex-col max-[290px]:gap-3">
                     <button
-                        className="btn launch-app-btn !rounded-none cursor-pointer whitespace-nowrap !min-h-[42px] !h-[42px] !py-0 !px-[1.75rem] text-[0.95rem] max-[480px]:flex-1 max-[360px]:!px-2 max-[360px]:text-[0.8rem] max-[290px]:w-full max-[290px]:!px-[1.75rem]"
+                        className="btn launch-app-btn !rounded-xl cursor-pointer whitespace-nowrap !min-h-[42px] !h-[42px] !py-0 !px-[1.75rem] text-[0.95rem] max-[480px]:flex-1 max-[360px]:!px-2 max-[360px]:text-[0.8rem] max-[290px]:w-full max-[290px]:!px-[1.75rem]"
                         type="submit"
                         disabled={isPending}
                     >
@@ -118,7 +118,7 @@ export default function WaitlistForm() {
                     </button>
                     <a
                         href="https://app.rezlabs.org/"
-                        className="btn launch-app-btn !rounded-none cursor-pointer whitespace-nowrap !min-h-[42px] !h-[42px] !py-0 !px-[1.75rem] text-[0.95rem] text-center max-[480px]:flex-1 max-[360px]:!px-2 max-[360px]:text-[0.8rem] max-[290px]:w-full max-[290px]:!px-[1.75rem]"
+                        className="btn launch-app-btn !rounded-xl cursor-pointer whitespace-nowrap !min-h-[42px] !h-[42px] !py-0 !px-[1.75rem] text-[0.95rem] text-center max-[480px]:flex-1 max-[360px]:!px-2 max-[360px]:text-[0.8rem] max-[290px]:w-full max-[290px]:!px-[1.75rem]"
                     >
                         Have an invite code?
                     </a>

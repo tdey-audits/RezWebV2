@@ -61,7 +61,7 @@ const Navbar = () => {
                 </div>
 
                 <div className="navbar-right">
-                    <a href="https://www.papermark.com/view/cmj2tgzzd0004lb043vi5a6zb" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-light launch-app-btn max-[370px]:!hidden">Read Litepaper</a>
+                    <a href="https://www.papermark.com/view/cmj2tgzzd0004lb043vi5a6zb" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-light launch-app-btn !rounded-xl max-[370px]:!hidden">Read Litepaper</a>
                     {/* Hamburger Menu Button */}
                     <button
                         className="hidden max-[370px]:!block"
