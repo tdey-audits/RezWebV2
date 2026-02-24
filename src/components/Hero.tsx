@@ -25,18 +25,18 @@ const Hero = () => {
             <div className="container hero-content relative z-10">
                 <div className="hero-text">
                     <h1 className="hero-title">
-                        The Future of Perps<br />
+                        Your personal Quant<br />
                         <span className="italic max-[280px]:text-[2.8rem] max-[260px]:text-[2rem]">
                             <AuroraText
                                 colors={['#4B5563', '#6B7280', '#9CA3AF', '#71717A', '#52525B']}
                                 speed={1.2}
                             >
-                                is Autonomous
+                                for perps
                             </AuroraText>
                         </span>
                     </h1>
                     <p className="hero-subtitle">
-                        Rez is a non-custodial platform that automates perpetual trading using AI agents.
+                        Rez is a non-custodial platform that automates perpetual trading using agents.
                     </p>
                     <div className="hero-buttons flex flex-col items-center justify-center w-full">
                         <WaitlistForm />
