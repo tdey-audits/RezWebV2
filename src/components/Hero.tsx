@@ -31,7 +31,7 @@ const Hero = () => {
                                 colors={['#4B5563', '#6B7280', '#9CA3AF', '#71717A', '#52525B']}
                                 speed={1.2}
                             >
-                                for perps
+                                for Perpetuals
                             </AuroraText>
                         </span>
                     </h1>
