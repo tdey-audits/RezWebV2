@@ -1,0 +1,338 @@
+#roadmap-integration {
+    --bg-color: transparent;
+    --surface-color: #f8f9fa;
+    --border-color: rgba(0, 0, 0, 0.08);
+    --text-primary: #000000;
+    --text-secondary: #666666;
+    --accent-color: #000000;
+    --success-color: #000000;
+    --status-released: #000000;
+    --status-current: #000000;
+    --status-upcoming: #cccccc;
+    --font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+    --timeline-line: rgba(0, 0, 0, 0.1);
+    --timeline-progress: #000000;
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: var(--font-family) !important;
+    line-height: 1.6 !important;
+    color: var(--text-primary) !important;
+}
+
+#roadmap-integration .container {
+    max-width: 900px;
+    width: 100%;
+    padding: 60px 20px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+#roadmap-integration header h1.headline-serif {
+    font-size: 5.5rem !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.04em !important;
+    color: #000 !important;
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+    font-family: 'Instrument Serif', serif !important;
+}
+
+#roadmap-integration header {
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+/* Timeline Layout */
+#roadmap-integration .timeline {
+    position: relative;
+}
+
+#roadmap-integration .timeline::before {
+    content: "";
+    position: absolute;
+    left: 30px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--timeline-line);
+    z-index: 1;
+}
+
+#roadmap-integration .timeline-progress-bar {
+    position: absolute;
+    left: 30px;
+    top: 0;
+    width: 2px;
+    background: var(--timeline-progress);
+    z-index: 2;
+    height: 0%;
+    transition: height 0.1s linear;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+#roadmap-integration .timeline-progress-bar::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background: #000;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#roadmap-integration .phase {
+    position: relative;
+    margin-bottom: 100px;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    /* Explicitly clear any inherited section padding */
+    padding: 0 !important;
+}
+
+#roadmap-integration .phase.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Phase Marker Styles */
+#roadmap-integration .phase-marker {
+    position: absolute;
+    left: 11px;
+    top: 0;
+    width: 44px;
+    height: 44px;
+    background: #000;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+}
+
+#roadmap-integration .phase-marker i {
+    color: #fff;
+    font-size: 1.3rem;
+}
+
+/* Specific Style for Phase 3 onwards (Upcoming) */
+#roadmap-integration .phase[data-status="upcoming"] .phase-marker {
+    background: #fff;
+    border: 2px solid #000;
+}
+
+#roadmap-integration .phase[data-status="upcoming"] .phase-marker i {
+    color: #000;
+}
+
+/* Content Area */
+#roadmap-integration .phase-content {
+    margin-left: 80px;
+    padding-top: 0;
+}
+
+#roadmap-integration .phase-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    padding-top: 2px;
+    /* Slight adjustment to align label with marker center */
+}
+
+#roadmap-integration .phase-info .phase-label {
+    font-size: 0.75rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    color: var(--text-secondary) !important;
+    font-weight: 600 !important;
+    margin-bottom: 4px !important;
+    display: block !important;
+    font-family: var(--font-family) !important;
+}
+
+#roadmap-integration .phase-info h2 {
+    font-size: 1.8rem !important;
+    font-weight: 700 !important;
+    margin: 0 !important;
+    font-family: var(--font-family) !important;
+    line-height: 1.2 !important;
+    color: #000 !important;
+}
+
+#roadmap-integration .status-badge {
+    padding: 4px 12px !important;
+    border-radius: 6px !important;
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    border: 1px solid currentColor !important;
+    font-family: var(--font-family) !important;
+    flex-shrink: 0;
+}
+
+#roadmap-integration .status-badge.released {
+    color: var(--status-released) !important;
+    background: rgba(0, 0, 0, 0.05) !important;
+}
+
+#roadmap-integration .status-badge.current {
+    color: var(--status-current) !important;
+    background: rgba(0, 0, 0, 0.1) !important;
+}
+
+#roadmap-integration .status-badge.upcoming {
+    color: var(--status-upcoming) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    background: transparent !important;
+}
+
+/* Version Cards Light Theme */
+#roadmap-integration .version-card {
+    background: rgba(255, 255, 255, 0.8) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 16px !important;
+    padding: 30px !important;
+    margin-bottom: 25px !important;
+    backdrop-filter: blur(10px) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03) !important;
+}
+
+#roadmap-integration .version-card:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08) !important;
+    border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+#roadmap-integration .version-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    margin-bottom: 8px !important;
+}
+
+#roadmap-integration .version-title {
+    font-size: 1.4rem !important;
+    font-weight: 700 !important;
+    font-family: var(--font-family) !important;
+    color: #000 !important;
+}
+
+#roadmap-integration .version-time {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.85rem !important;
+    color: var(--text-secondary) !important;
+    background: rgba(0, 0, 0, 0.04) !important;
+    padding: 2px 8px !important;
+    border-radius: 4px !important;
+}
+
+#roadmap-integration .version-goal {
+    font-style: italic !important;
+    color: var(--text-secondary) !important;
+    margin-bottom: 20px !important;
+    font-size: 0.95rem !important;
+    display: block !important;
+    font-family: var(--font-family) !important;
+}
+
+/* Feature List */
+#roadmap-integration .feature-list {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+#roadmap-integration .feature-item {
+    display: flex !important;
+    align-items: flex-start !important;
+    margin-bottom: 20px !important;
+    font-size: 1rem !important;
+    color: #333 !important;
+    gap: 24px !important;
+    font-family: var(--font-family) !important;
+}
+
+#roadmap-integration .check-box {
+    width: 18px !important;
+    height: 18px !important;
+    border-radius: 4px !important;
+    border: 1.5px solid rgba(0, 0, 0, 0.3) !important;
+    position: relative !important;
+    flex-shrink: 0 !important;
+    margin-top: 4px !important;
+}
+
+#roadmap-integration .feature-item.done .check-box {
+    background: #000 !important;
+    border-color: #000 !important;
+}
+
+#roadmap-integration .feature-item.done .check-box::after {
+    content: "✓" !important;
+    position: absolute !important;
+    color: #fff !important;
+    font-size: 11px !important;
+    font-weight: 900 !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+}
+
+#roadmap-integration .feature-item.current .check-box {
+    border-color: #000 !important;
+}
+
+#roadmap-integration .feature-item.current .check-box::after {
+    content: "" !important;
+    position: absolute !important;
+    width: 6px !important;
+    height: 6px !important;
+    background: #000 !important;
+    border-radius: 50% !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+}
+
+#roadmap-integration .feature-item.planned .check-box {
+    border-style: dashed !important;
+}
+
+@media (max-width: 600px) {
+    #roadmap-integration .timeline::before {
+        left: 20px;
+    }
+
+    #roadmap-integration .timeline-progress-bar {
+        left: 20px;
+    }
+
+    #roadmap-integration .phase-marker {
+        left: 1px;
+        width: 36px;
+        height: 36px;
+    }
+
+    #roadmap-integration .phase-content {
+        margin-left: 50px;
+    }
+
+    #roadmap-integration .phase-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    #roadmap-integration .status-badge {
+        align-self: flex-start;
+    }
+}

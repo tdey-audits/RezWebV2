@@ -84,7 +84,7 @@ const Navbar = () => {
                     >
                         <div className="py-4 pr-6 flex flex-col gap-1.5" style={{ paddingLeft: '0.5rem' }}>
                             <button onClick={() => { scrollToSection('#why-rez'); setMobileMenuOpen(false); }} className="!text-black text-left">Why Rez</button>
-                            <Link href="/blog" className="!text-black" onClick={() => setMobileMenuOpen(false)}>Blog</Link>
+                            <Link href="/manifesto" className="!text-black" onClick={() => setMobileMenuOpen(false)}>Manifesto</Link>
                             <Link href="/roadmap" className="!text-black" onClick={() => setMobileMenuOpen(false)}>Roadmap</Link>
                             <a href="https://www.papermark.com/view/cmj2tgzzd0004lb043vi5a6zb" target="_blank" rel="noopener noreferrer" className="!text-black">Read Litepaper</a>
                         </div>

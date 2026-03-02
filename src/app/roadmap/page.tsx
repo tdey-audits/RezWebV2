@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import ColorBends from '../../components/ui/ColorBends';
-import { ShineBorder } from '../../components/ui/shine-border';
+import Roadmap from '../../components/Roadmap';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
@@ -38,9 +38,9 @@ export default function RoadmapPage() {
     }, []);
 
     return (
-        <div className="App">
+        <div className="App overflow-x-hidden">
             <Navbar />
-            <section className="roadmap-page pt-24 pb-24 min-h-screen relative flex items-center justify-center overflow-hidden">
+            <section className="roadmap-page min-h-screen relative flex flex-col items-center pt-32 pb-32 overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <ColorBends
                         colors={["#757575ff"]}
@@ -54,9 +54,8 @@ export default function RoadmapPage() {
                         noise={0.1}
                     />
                 </div>
-                <div className="w-full max-w-4xl mx-auto px-6 md:px-12 relative z-10 text-center flex flex-col items-center justify-center">
-                    <h1 className="text-5xl md:text-8xl font-bold mb-6 text-center tracking-tight">Roadmap</h1>
-                    <h2 style={{ fontSize: 'clamp(2rem, 2.5vw, 1.5rem)', color: '#000000', fontWeight: 600, marginBottom: 0, fontFamily: 'Inter, sans-serif' }}>Coming Soon</h2>
+                <div className="w-full relative z-10 flex flex-col items-center">
+                    <Roadmap />
                 </div>
             </section>
             <Footer />
